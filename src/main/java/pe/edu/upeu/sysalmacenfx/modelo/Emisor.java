@@ -33,4 +33,5 @@ public class Emisor {
     private String provincia;
     @Column(name = "distrito", nullable = false, length = 60)
     private String distrito;
+    //Emisor
 }
