@@ -5,7 +5,5 @@ import org.springframework.stereotype.Repository;
 import pe.edu.upeu.sysalmacenfx.modelo.CompCarrito;
 
 @Repository
-
-public interface CompCarritoRepository extends JpaRepository <CompCarrito, Long> {
+public interface CompCarritoRepository extends JpaRepository<CompCarrito, Long> {
 }
-

@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import pe.edu.upeu.sysalmacenfx.modelo.VentCarrito;
 
 @Repository
-public interface VentCarritoRepository extends JpaRepository<VentCarrito, Long> {
+public interface VentCarritoRepository  extends JpaRepository<VentCarrito, Long> {
 }

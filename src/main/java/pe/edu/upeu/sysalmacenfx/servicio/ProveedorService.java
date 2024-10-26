@@ -2,69 +2,42 @@ package pe.edu.upeu.sysalmacenfx.servicio;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pe.edu.upeu.sysalmacenfx.dto.ComboBoxOption;
 import pe.edu.upeu.sysalmacenfx.modelo.Proveedor;
-import pe.edu.upeu.sysalmacenfx.repositorio.ProovedorRepository;
+import pe.edu.upeu.sysalmacenfx.repositorio.ProveedorRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class ProveedorService {
-
     @Autowired
-    ProovedorRepository repo;
+    ProveedorRepository repo;
 
-
-    //C
-    public Proveedor save(Proveedor to){
+    public Proveedor save(Proveedor to) {
         return repo.save(to);
     }
 
-    //R
-    public List<Proveedor> list(){
+    public List<Proveedor> list() {
         return repo.findAll();
     }
-    //U
-    public Proveedor update (Proveedor to, long id) {
-        Proveedor toe =repo.findById(id).get();
+
+    public Proveedor update(Proveedor to, Long id) {
         try {
-            if (toe!=null) {
-                toe.setNombresRaso(to.getNombresRaso());
-
+            Proveedor toe = repo.findById(id).orElse(null);
+            if (toe != null) {
+                toe.setDniRuc(to.getDniRuc());
+                return repo.save(toe);
             }
-            return repo.save(toe);
-
-        }catch (Exception e){
-            System.out.println("Error: "+e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
         }
         return null;
+    }
 
-    }
-    public Proveedor update (Proveedor to){
-        return repo.save(to);
-    }
-    //D
-    public void delete (Long id){
+    public void delete(Long id) {
         repo.deleteById(id);
     }
 
-    //B
-    public Proveedor searchById(Long id){
-        return repo.findById(id).get();
-    }
-
-    public List<ComboBoxOption> listaCombobox(){
-        List<ComboBoxOption> listar=new ArrayList<>();
-        ComboBoxOption cb;
-        for
-        (Proveedor cate : repo.findAll()) {
-            cb=new ComboBoxOption();
-            cb.setKey(String.valueOf(cate.getIdProveedor()));
-            cb.setValue(cate.getNombresRaso());
-            listar.add(cb);
-
-        }
-        return listar;
+    public Proveedor searchById(Long id) {
+        return repo.findById(id).orElse(null);
     }
 }

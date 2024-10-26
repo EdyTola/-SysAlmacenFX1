@@ -13,19 +13,21 @@ import org.springframework.context.ConfigurableApplicationContext;
 @SpringBootApplication
 public class SysAlmacenFxApplication extends Application {
 
-
 	private static ConfigurableApplicationContext configurableApplicationContext;
 	private Parent parent;
+
+
 	public static void main(String[] args) {
 		//SpringApplication.run(SysAlmacenFxApplication.class, args);
 		launch(args);
 	}
+
 	@Override
 	public void init() throws Exception {
 		SpringApplicationBuilder builder = new SpringApplicationBuilder(SysAlmacenFxApplication.class);
 		builder.application().setWebApplicationType(WebApplicationType.NONE);
 		configurableApplicationContext = builder.run(getParameters().getRaw().toArray(new String[0]));
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/main_producto.fxml"));
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/login.fxml"));
 		fxmlLoader.setControllerFactory(configurableApplicationContext::getBean);
 		parent= fxmlLoader.load();
 	}
@@ -46,10 +48,13 @@ public class SysAlmacenFxApplication extends Application {
 
 	/*@Bean
 	public CommandLineRunner run(ApplicationContext context) { return args -> {
-		//MainX mx = context.getBean(MainX.class);
+		//mx = context.getBean(MainX.class);
 		MainY mx = context.getBean(MainY.class);
 		mx.menu();
 		};
 	}*/
+
+
+
 
 }

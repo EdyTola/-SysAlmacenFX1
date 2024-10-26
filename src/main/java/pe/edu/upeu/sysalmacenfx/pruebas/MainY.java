@@ -10,22 +10,20 @@ import java.util.List;
 import java.util.Scanner;
 
 @Component
-
 public class MainY {
-    CategoriaService service;
     @Autowired
-    CategoriaRepository repository;
+    CategoriaService service;
     public void registro(){
         System.out.println("MAIN CATEGORIA");
         Categoria ca=new Categoria();
         ca.setNombre("Celulares");
-        Categoria dd=repository.save(ca);
-        System.out.println("Reporte: ");
+        Categoria dd=service.save(ca);
+        System.out.println("Reporte:");
         System.out.println(dd.getIdCategoria() + "  "+ dd.getNombre());
     }
 
     public void listar(){
-        List<Categoria> datos=repository.findAll();
+        List<Categoria> datos=service.list();
         System.out.println("ID\tNombre");
         for (Categoria ca: datos) {
             System.out.println(ca.getIdCategoria()+"\t"+ca.getNombre());
@@ -47,5 +45,5 @@ public class MainY {
             opc=Integer.parseInt(cs.next());
         }while(opc!=0);
     }
-}
 
+}

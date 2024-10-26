@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import pe.edu.upeu.sysalmacenfx.modelo.VentaDetalle;
 
 @Repository
-public interface VentaDetalleRepository extends JpaRepository <VentaDetalle, Long> {
+public interface VentaDetalleRepository  extends JpaRepository<VentaDetalle, Long> {
 }
