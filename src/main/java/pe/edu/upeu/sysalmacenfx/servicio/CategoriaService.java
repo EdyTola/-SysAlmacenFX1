@@ -64,5 +64,4 @@ public class CategoriaService {
         return listar;
     }
 
-
 }

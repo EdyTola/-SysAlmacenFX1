@@ -120,9 +120,7 @@ public class ProductoController {
         TableViewHelper<Producto> tableViewHelper = new TableViewHelper<>();
         LinkedHashMap<String, ColumnInfo> columns = new LinkedHashMap<>();
         columns.put("ID Pro.", new ColumnInfo("idProducto", 60.0)); // Columna visible "Columna 1" mapea al campo "campo1"
-        columns.put("Nombre Producto", new ColumnInfo("nombre", 200.0)); // Columna visible "Columna 2" mapea al campo "campo2"
-        columns.put("P. Unitario", new ColumnInfo("pu", 150.0)); // Columna visible "Columna 2" mapea al campo "campo2"
-        columns.put("Utilidad", new ColumnInfo("utilidad", 100.0)); // Columna visible "Columna 2" mapea al campo "campo2"
+        columns.put("Nombre Cliente", new ColumnInfo("nombre", 200.0)); // Columna visible "Columna 2" mapea al campo "campo2"
         columns.put("Marca", new ColumnInfo("marca.nombre", 200.0)); // Columna visible "Columna 2" mapea al campo "campo2"
         columns.put("Categoria", new ColumnInfo("categoria.nombre", 200.0));
         columns.put("Unid. Medida", new ColumnInfo("unidadMedida.nombreMedida",150.0));
@@ -250,12 +248,12 @@ public class ProductoController {
         String idxUM=cbxUnidMedida.getSelectionModel().getSelectedItem()==null?"0":cbxUnidMedida.getSelectionModel().getSelectedItem().getKey();
         formulario.setUnidadMedida(ums.searchById(Long.parseLong(idxUM)));
         Set<ConstraintViolation<Producto>> violaciones = validator.validate(formulario);
-// Si prefieres ordenarlo por el nombre de la propiedad que violó la restricción, podrías usar:
+        // Si prefieres ordenarlo por el nombre de la propiedad que violó la restricción, podrías usar:
         List<ConstraintViolation<Producto>> violacionesOrdenadasPorPropiedad = violaciones.stream()
                 .sorted((v1, v2) -> v1.getPropertyPath().toString().compareTo(v2.getPropertyPath().toString()))
                 .collect(Collectors.toList());
         if (violacionesOrdenadasPorPropiedad.isEmpty()) {
-// Los datos son válidos
+        // Los datos son válidos
             lbnMsg.setText("Formulario válido");
             lbnMsg.setStyle("-fx-text-fill: green; -fx-font-size: 16px;");
             limpiarError();
@@ -279,15 +277,15 @@ public class ProductoController {
 
     private void filtrarProductos(String filtro) {
         if (filtro == null || filtro.isEmpty()) {
-// Si el filtro está vacío, volver a mostrar la lista completa
+           // Si el filtro está vacío, volver a mostrar la lista completa
             tableView.getItems().clear();
             tableView.getItems().addAll(listarProducto);
         } else {
-// Aplicar el filtro
+             // Aplicar el filtro
             String lowerCaseFilter = filtro.toLowerCase();
             List<Producto> productosFiltrados = listarProducto.stream()
                     .filter(producto -> {
-// Verificar si el filtro coincide con alguno de los campos
+                        // Verificar si el filtro coincide con alguno de los campos
                         if (producto.getNombre().toLowerCase().contains(lowerCaseFilter)) {
                             return true;
                         }
@@ -319,14 +317,14 @@ public class ProductoController {
         txtUtilidad.setText(producto.getUtilidad().toString());
         txtStock.setText(producto.getStock().toString());
         txtStockOld.setText(producto.getStockOld().toString());
-// Seleccionar el ítem en cbxMarca según el ID de Marca
+              // Seleccionar el ítem en cbxMarca según el ID de Marca
         cbxMarca.getSelectionModel().select(
                 cbxMarca.getItems().stream()
                         .filter(marca -> Long.parseLong(marca.getKey())==producto.getMarca().getIdMarca())
                         .findFirst()
                         .orElse(null)
         );
-// Seleccionar el ítem en cbxCategoria según el ID de Categoria
+                  // Seleccionar el ítem en cbxCategoria según el ID de Categoria
         cbxCategoria.getSelectionModel().select(
                 cbxCategoria.getItems().stream()
                         .filter(categoria -> Long.parseLong(categoria.getKey())==producto.getCategoria().getIdCategoria())

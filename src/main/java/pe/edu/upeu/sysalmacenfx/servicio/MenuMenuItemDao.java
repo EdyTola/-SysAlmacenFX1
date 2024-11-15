@@ -14,12 +14,15 @@ public class MenuMenuItemDao implements MenuMenuItenDaoI{
     public List<MenuMenuItenTO> listaAccesos(String perfil, Properties idioma) {
         List<MenuMenuItenTO> lista = new ArrayList<>();
         lista.add(new MenuMenuItenTO(idioma.getProperty("menu.nombre.archivo"), "", "mifile"));
+        lista.add(new MenuMenuItenTO(idioma.getProperty("menu.nombre.archivo"), "Salir", "misalir"));
         lista.add(new MenuMenuItenTO("Edit", "Cortar", "micut"));
         lista.add(new MenuMenuItenTO("Edit", "copiar", "micopy"));
         lista.add(new MenuMenuItenTO("Edit", "pegar", "mipaste"));
         lista.add(new MenuMenuItenTO("Edit", idioma.getProperty("menuitem.nombre.postulante"), "miselectall"));
         lista.add(new MenuMenuItenTO("Producto", "Reg. Producto", "miregproduct"));
+        lista.add(new MenuMenuItenTO("Venta", "Reg. Venta", "miventa"));
         lista.add(new MenuMenuItenTO("Producto", "Ver2", "miver2"));
+        lista.add(new MenuMenuItenTO("Producto", "Registro Venta", "miventa"));
         lista.add(new MenuMenuItenTO("Producto", "Auto Complete", "miautcomp"));
         lista.add(new MenuMenuItenTO("Principal", "Cliente", "cliente"));
         lista.add(new MenuMenuItenTO("Principal", "Rep. Venta", "repventa"));
